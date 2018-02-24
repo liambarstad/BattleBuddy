@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Modal, View, Text, Slider, TouchableHighlight, } from 'react-native'
 import Popout from './popout'
+import Expo from 'expo'
 const formatTime = require('../../helpers/time-helper').formatTime
 const styles = require('../../styles')
 

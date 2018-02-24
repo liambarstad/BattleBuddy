@@ -1,4 +1,9 @@
 {
-  "name": "BattleBuddy",
-  "displayName": "buddy"
+  "expo": {
+    "name": "BattleBuddy",
+    "slug": "battle-buddy",
+    "sdkVersion": "25.0.0",
+    "privacy": "unlisted",
+    "orientation": "portrait"
+  }
 }
