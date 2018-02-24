@@ -14,7 +14,7 @@ export default class Alarm extends Component {
   render() {
     return (
       <View style={styles.alarm}>
-        <ActiveButton 
+      {/*<ActiveButton 
           active={boolToInt(this.state.active)} 
         />
 
@@ -32,7 +32,7 @@ export default class Alarm extends Component {
 
         <DeleteButton 
           onPress={() => this.props.deleteFunc(this.props.id)} 
-        />
+        />*/}
       </View>
         )
   }

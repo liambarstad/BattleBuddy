@@ -13,13 +13,16 @@
   },
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "test": "node node_modules/jest/bin/jest.js __test__ --env=jsdom"
+    "test": "node node_modules/jest/bin/jest.js --env=jsdom"
   },
   "jest": {
     "preset": "jest-expo",
     "moduleNameMapper": {
       "react-native": "<rootDir>/node_modules/react-native-web"
-    }
+    },
+    "roots": [
+      "<rootDir>/__tests__"
+    ]
   },
   "dependencies": {
     "expo": "^25.0.0",
