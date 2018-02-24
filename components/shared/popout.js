@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { View, Button, Picker } from 'react-native'
 import { Platform } from 'expo'
-import { formatTime } from '../helpers/time-helper'
-const styles = require('../styles')
+import { formatTime } from '../../helpers/time-helper'
+const styles = require('../../styles')
 
 export default class Popout extends Component {
   constructor(props) {

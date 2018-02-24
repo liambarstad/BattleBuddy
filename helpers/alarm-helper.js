@@ -11,10 +11,6 @@ const validateNewAlarm = (obj={}) => {
   return obj
 }
 
-const getAlarmImage = (stat) => {
-  return <Image source={require('../assets/alarmClock' + stat)} />
-}
-
 const formatTime = (hours, minutes) => {
   let dayHalf
   if (hours < 12) { 
@@ -27,12 +23,4 @@ const formatTime = (hours, minutes) => {
   return formatHours + formatMinutes + dayHalf
 }
 
-const getLocationButton = (localized) => {
-  return <Image source={require('../assets/alarmLocation' + localized.toString())} /> 
-}
-
-const getItineraryButton = (itemized) => {
-  return <Image source={require('../assets/alarmItemized' + itemized.toString())} />
-}
-
-module.exports = { validateNewAlarm, getAlarmImage, formatTime, getLocationButton, getItineraryButton }
+module.exports = { validateNewAlarm, formatTime, }

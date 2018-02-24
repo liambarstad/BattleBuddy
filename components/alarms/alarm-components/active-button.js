@@ -5,7 +5,7 @@ const styles = require('../../../styles')
 
 const getImage = (active) => {
    active ?
-    <Image source={require('../../../assets/alarm/clock-active/png')} /> :
+    <Image source={require('../../../assets/alarm/clock-active.png')} /> :
     <Image source={require('../../../assets/alarm/clock-inactive.png')} />
 }
 
