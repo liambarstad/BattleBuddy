@@ -1,6 +1,7 @@
 import React from 'react'
 import { View } from 'react-native'
 const styles = require('../../styles')
+const boolToInt = require('../../helpers/gen-helper').boolToInt
 const { default: MainTab } = require('./main-tab')
 
 const isActive = (active, name) => {

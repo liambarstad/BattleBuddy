@@ -13,16 +13,12 @@ const styles = StyleSheet.create({
   tabOuterActive: {
     width: '30%',
     height: '20%',
-    backgroundColor: appBlack,
-    boxShadow: 'rgba(255,255,255,0.3) 0em 0em 0.5em 0.5em inset',
     alignItems: 'center',
   },
 
   tabInnerActive: {
     width: '20%',
     height: '12.6%',
-    backgroundColor: appOrange,
-    boxShadow: 'rgba(0,0,0,0.3) 0em 0em 0.5em 0.5em inset',
     textAlign: 'center',
   },
 
@@ -33,16 +29,12 @@ const styles = StyleSheet.create({
   tabOuterInactive: {
     width: '30%',
     height: '20%',
-    backgroundColor: appOrange,
-    boxShadow: 'rgba(0,0,0,0.3) 0em 0em 0.5em 0.5em inset',
     alignItems: 'center',
   },
 
   tabInnerInactive: {
     width: '20%',
     height: '12.6%',
-    backgroundColor: appBlack,
-    boxShadow: 'rgba(255,255,255,0.3) 0em 0em 0.5em 0.5em inset',
     textAlign: 'center',
   },
 
@@ -51,11 +43,9 @@ const styles = StyleSheet.create({
   },
 
   mainContent: {
-    backgroundColor: appBlack,
   },
 
   mainCard: {
-    backgoundColor: 'rgba(0,0,0,0)',
 
   },
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Text, View } from 'react-native'
+const intToBool = require('../../helpers/gen-helper').intToBool
 const styles = require('../../styles')
 
 const outerActive = (active) => {
@@ -27,7 +28,7 @@ const  textActive = (active) => {
 }
 
 export default  MainTab = (props) => {
-  let active = intToBool(this.props.active)  
+  let active = intToBool(props.active)  
   return (
     <View 
       style={outerActive(active)}
