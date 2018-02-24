@@ -1,8 +1,8 @@
 {
-  "expoServerPort": 19001,
-  "packagerPort": 19002,
-  "packagerPid": 55814,
-  "expoServerNgrokUrl": "https://kz-b38.liambarstad.battlebuddy.exp.direct",
-  "packagerNgrokUrl": "https://packager.kz-b38.liambarstad.battlebuddy.exp.direct",
-  "ngrokPid": 55826
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
 }
