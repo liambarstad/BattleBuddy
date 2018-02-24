@@ -1,4 +1,4 @@
-package com.buddy;
+package com.battlebuddy;
 
 import android.app.Application;
 

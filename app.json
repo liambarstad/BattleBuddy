@@ -1,9 +1,18 @@
 {
+  "name": "BattleBuddy",
+  "displayName": "BattleBuddy",
   "expo": {
     "name": "BattleBuddy",
     "slug": "battle-buddy",
+    "icon": "./assets/main/icon.png",
     "sdkVersion": "25.0.0",
     "privacy": "unlisted",
-    "orientation": "portrait"
+    "orientation": "portrait",
+    "ios": {
+      "bundleIdentifier": "com.turdel.battlebuddy"
+    },
+    "android": {
+      "package": "com.turdel.battlebuddy"
+    }
   }
 }

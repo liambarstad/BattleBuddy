@@ -30,6 +30,6 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-25.0.0.tar.gz",
     "react-native-cli": "^2.0.1",
     "react-native-web": "^0.5.0",
-    "realm": "^2.2.8"
+    "realm": "^2.2.10"
   }
 }
