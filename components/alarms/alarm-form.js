@@ -18,6 +18,11 @@ export default class AlarmForm extends Component {
     }
   }
   
+  submit = () => {
+    this.props.submit(this.state.info)
+    this.setState({ info: {} })
+  }
+
   render() {
     return (
       <View style={shared.form}>
@@ -59,7 +64,7 @@ export default class AlarmForm extends Component {
 
         <Button
           style={alarmStyles.formSubmit}
-          onPress={(info) => this.props.submit(this.state.info)}
+          onPress={this.submit}
           title='Add Alarm'
         />
       </View>
