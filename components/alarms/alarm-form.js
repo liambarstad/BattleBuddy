@@ -10,19 +10,15 @@ export default class AlarmForm extends Component {
     this.state = {
       editing: false,
     }
-    this.props.info ?
-      this.state.info = JSON.parse(this.props.info) :
+    if (this.props.info) {
+      this.state.info = JSON.parse(this.props.info)
+      this.state.location = Locations.findByAlarm(this.state.info.id)
+    } else {
       this.state.info = {}
+    }
   }
   
-  itemize = () => {
-    this.state['itemized'] ?
-      this.setState({info:{itemized:false}}) :
-      this.setState({info:{itemized:true}})
-  }
-
   render() {
-    let info = this.state.info
     return (
       <View style={shared.form}>
         <ScrollView>
@@ -30,21 +26,20 @@ export default class AlarmForm extends Component {
             name='Time'
             type='time'
             popout='true'
-            value={info.time}
+            value={this.state.info.time}
             onSubmit={(time) => this.setState({info:{time:time}})}
           />
           <OptionBox
             name='Location'
             type='location'
             popout='true'
-            disabled='true'
-            value={info.location}
+            value={this.state.location}
           />
           <OptionBox
             name='Itinerary'
             type='slider'
-            value={boolToInt(info.itemized)}
-            onSubmit={(val) => this.itemize(val)}
+            value={boolToInt(this.state.info.itemized)}
+            onSubmit={(val) => this.setState({info:{itemized:val}})}
           />
           <OptionBox
             name='Repeat'
@@ -64,7 +59,7 @@ export default class AlarmForm extends Component {
 
         <Button
           style={alarmStyles.formSubmit}
-          onPress={(info) => this.props.submit(info)}
+          onPress={(info) => this.props.submit(this.state.info)}
           title='Add Alarm'
         />
       </View>

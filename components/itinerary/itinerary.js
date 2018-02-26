@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
-import { Text } from 'react-native'
+import { Text, ScrollView } from 'react-native'
+import { SQLite } from 'expo'
+
+const db = SQLite.openDatabase('BattleBuddy.db')
 
 export default class Itinerary extends Component {
   constructor(props) {
@@ -10,18 +13,9 @@ export default class Itinerary extends Component {
   }
 
   componentDidMount() {
-    ItineraryRealm.get()
-      .then(data => {
-        data.map(item => {
-          <ItineraryItem
-            info={JSON.stringify(item)}
-            onClick=handleClick(event.target)} />
-        })
-      })
-      .then(itinerary => {
-        this.setState({ itinerary })
-      })
-      .catch(err => this.setState({ itinerary: <Error resource='itinerary'/>)
+    Itinerary.createItineraryTable()
+    let itinerary = Itinerary.getAll()
+    this.setState({ itinerary })
   }
 
   render() {
@@ -30,5 +24,19 @@ export default class Itinerary extends Component {
         { this.state.itinerary }
       </ScrollView>
         )
+  }
+
+  static _formatItinerary(arr) {
+    return arr.map(itineraryItem => {
+      <Text>{itineraryItem}</Text>
+    })
+  }
+
+  static getAll() {
+    return db.transaction(tr => {
+      tr.executeSql('select * from itineraryitems;',
+      null,
+      (_, { rows: { _array }}) => Itinerary._formatItinerary(_array))
+    })
   }
 }

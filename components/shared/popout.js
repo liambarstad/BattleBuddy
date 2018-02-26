@@ -7,15 +7,17 @@ export default class Popout extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      time: this.prepareTime()
+      value: this.prepareValue()
     }
   }
 
-  prepareTime() {
+  prepareValue() {
     if (this.props.type === 'time') {
-      return stringToDate(this.props.time)
+      return this.props.value ?
+        stringToDate(this.props.value) :
+        new Date
     } else {
-
+      return null
     }
   }
 
@@ -23,7 +25,7 @@ export default class Popout extends Component {
     if (this.props.type === 'time') {
       return this.time()
     } else {
-      
+      return this.location() 
     }
   }
 
@@ -31,22 +33,26 @@ export default class Popout extends Component {
     if (Platform.OS === 'ios') {
       return (
         <DatePickerIOS
-          date={this.state.time}
-          onDateChange={(time) => this.setState({time})} 
+          date={this.state.value}
+          onDateChange={(value) => this.setState({value})} 
           mode='time'
         />
       )
     } else {
       return(
-        <Text>You Fucked up son</Text>
+        <Text>Not yet implemented for android</Text>
       )
     }
   }
 
+  location() {
+              
+  }
+
   submit = () => {
     if (this.props.type === 'time') {
-      let time = formatTime(this.state.time)
-      this.props.onSubmit(time)
+      let value = formatTime(this.state.value)
+      this.props.onSubmit(value)
     }
   }
 

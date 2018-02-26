@@ -14,9 +14,6 @@ const appStyles = StyleSheet.create({
     backgroundColor: 'white',
   },
 
-  createButton: {
-    backgroundColor: 'blue',
-  },
 })
 
 const mainTabStyles = StyleSheet.create({
@@ -113,7 +110,15 @@ const shared = StyleSheet.create({
   pickers: {
     flex: 1,
     flexDirection: 'row',
-  }
+  },
+
+  createButton: {
+    backgroundColor: 'blue',
+  },
+
+  pry: {
+    color: 'white'
+  },
 })
 
 module.exports = { appStyles, mainTabStyles, alarmStyles, shared }
