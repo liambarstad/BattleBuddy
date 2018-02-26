@@ -6,18 +6,17 @@ import { alarmStyles } from '../../../styles'
 const getImage = (active) => {
    active ?
     <Image 
-      source={require('../../../assets/alarm/clock-active.png')} 
-      style={alarmStyles.icon}
+      source={require('../../../assets/main/clock-active.png')} 
     /> :
     <Image 
-      source={require('../../../assets/alarm/clock-inactive.png')}
-      style={alarmStyles.icon}
+      source={require('../../../assets/main/clock-inactive.png')}
     />
 }
 
 export default ActiveButton = (props) => {
   return (
     <TouchableHighlight
+      style={alarmStyles.icon}
       onPress={props.toggle}
     >
       <View style={alarmStyles.alarmClock}>

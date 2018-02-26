@@ -5,7 +5,7 @@ import MainTabs from './components/main-page/main-tabs'
 import MainContent from './components/main-page/main-content'
 import { appStyles, shared } from './styles'
 const boolToInt = require('./helpers/gen-helper').boolToInt
-const db = require('./helpers/db')
+//const db = require('./helpers/db')
 
 export default class App extends Component {
   constructor(props) {
@@ -39,15 +39,14 @@ export default class App extends Component {
   }
 
   render() {
-    let active = this.state.active
     return (
       <View style={appStyles.mainApp}>
         <MainTabs 
-          active={active}
+          active={this.state.active}
           changeFunc={(active) => this.setState({active})} 
         />
         <View style={appStyles.mainContent}>
-          <MainContent name={active} />
+          <MainContent name={this.state.active} />
         </View>
       </View>
     )

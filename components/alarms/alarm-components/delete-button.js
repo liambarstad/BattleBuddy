@@ -9,7 +9,7 @@ export default DeleteButton = (props) => {
       onPress={() => props.destroy()} 
     >
       <Image
-        source={require('../../../assets/alarm/delete-button.png')}
+        source={require('../../../assets/main/delete-button.png')}
         style={alarmStyles.icon}
       />
     </TouchableHighlight>

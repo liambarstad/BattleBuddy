@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Text, View, Button, Platform, DatePickerIOS } from 'react-native'
+import { MapView } from 'expo'
 import { formatTime, stringToDate } from '../../helpers/time-helper'
+import { verifyLocation } from '../../helpers/location-helper'
 import { shared } from '../../styles'
 
 export default class Popout extends Component {
@@ -46,7 +48,16 @@ export default class Popout extends Component {
   }
 
   location() {
-              
+    verifyLocation()
+      .then(granted => {
+        if (granted) {
+          return (
+            <MapView 
+              style={locationStyles.map} 
+            />
+          )
+        }
+      })
   }
 
   submit = () => {

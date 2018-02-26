@@ -6,18 +6,19 @@ const intToBool = require('../../../helpers/gen-helper').intToBool
 const getImage = (active) => {
   active ?
     <Image 
-      source={require('../../../assets/alarm/location-button-active.png')} 
-      style={alarmStyles.icon}
+      source={require('../../../assets/main/location-button-active.png')} 
     /> :
     <Image 
-      source={require('../../../assets/alarm/location-button-inactive.png')} 
-      style={alarmStyles.icon}
+      source={require('../../../assets/main/location-button-inactive.png')} 
     />
 }
     
 export default LocationButton = (props) => {
   return (
-    <TouchableHighlight>
+    <TouchableHighlight
+      style={alarmStyles.icon}
+      onPress={props.toggle}
+    >
       <View>
         { getImage(intToBool(props.active)) }
       </View>

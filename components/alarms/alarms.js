@@ -6,7 +6,7 @@ import CreateScreen from '../shared/create-screen'
 import { validateNew } from '../../helpers/alarm-helper'
 import { boolToInt } from '../../helpers/gen-helper'
 import { alarmStyles, shared } from '../../styles'
-const db = require('../../helpers/db')
+//const db = require('../../helpers/db')
 
 export default class Alarms extends Component {
   constructor(props) {
@@ -17,17 +17,22 @@ export default class Alarms extends Component {
     }
   }
 
-  componentDidMount() {
-    let alarms = this.getAll()
-  }
+  //componentDidMount() {
+    //let alarms = this.getAll()
+  //}
 
   toggleCreateScreen = () => {
     let prevState = this.state.createScreen
     this.setState({createScreen:!prevState})
   }
 
-  formatAlarms(arr) {
-    return <Text>{JSON.stringify(this.state.alarms)}</Text>
+  formatAlarm(alarm) {
+    return  <Alarm 
+        active={alarm.active}
+        time={alarm.time}
+        itemized={alarm.itemized}
+        localized={alarm.localized}
+      />
   }
 
   render() {
@@ -40,7 +45,7 @@ export default class Alarms extends Component {
         />
       
         <ScrollView style={alarmStyles.mainCard}>
-          { this.formatAlarms() }
+          { this.state.alarms }
         </ScrollView>
       
         <Button
@@ -66,6 +71,8 @@ export default class Alarms extends Component {
 
   create(info) {
     let validated = validateNew(info) 
+    let newAlarm = this.formatAlarm(validated)
+    this.setState({alarms: [newAlarm, ...this.state.alarms], createScreen: false})
     /*db.transaction(tr => {
       tr.executeSql('insert into alarms (active, time, itemized, localized) values (?, ?, ?, ?);',
         [validated.active, validated.time, validated.itemized, validated.localized],

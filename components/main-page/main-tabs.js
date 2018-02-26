@@ -14,17 +14,17 @@ export default  MainTabs = (props) => {
       <MainTab 
         name="alarms"  
         active={isActive(props.active, "alarms")} 
-        changeFunc={props.changeFunc}
+        changeFunc={(active) => props.changeFunc(active)}
       />
       <MainTab 
         name="locations" 
         active={isActive(props.active, "locations")}
-        changeFunc={props.changeFunc}
+        changeFunc={(active) => props.changeFunc(active)}
       />
       <MainTab 
         name="itinerary" 
         active={isActive(props.active, "itinerary")}
-        changeFunc={props.changeFunc}
+        changeFunc={(active) => props.changeFunc(active)}
       />
     </View>
       )
