@@ -55,24 +55,24 @@ export default class Alarms extends Component {
 
 
   getAll() {
-    db.transaction(tr => {
+    /*db.transaction(tr => {
       tr.executeSql('select * from alarms order by active;',
         null,
-        (_, { rows: { _array }}) => this.setState({_array, createScreen:false}),
+        (_, alarms) => this.setState({alarms, createScreen:false}),
         (_, alarms) => this.setState({alarms, createScreen:false})
       )
-    })
+    })*/
   }
 
   create(info) {
     let validated = validateNew(info) 
-    db.transaction(tr => {
+    /*db.transaction(tr => {
       tr.executeSql('insert into alarms (active, time, itemized, localized) values (?, ?, ?, ?);',
         [validated.active, validated.time, validated.itemized, validated.localized],
-        (_, { rows: { _array }}) => this.setState({ alarms: [_array, ...this.state.alarms], createScreen: false }),
+        (_, newAlarm) => this.setState({ alarms: [newAlarm, ...this.state.alarms], createScreen: false }),
         (query, alarms) => this.setState({alarms: query, createScreen:false })
       )
-    })
+    })*/
   }
 
 }

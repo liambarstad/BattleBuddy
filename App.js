@@ -17,21 +17,21 @@ export default class App extends Component {
 
 
   componentDidMount() {
-    this.createAlarmsTable()
+    /*this.createAlarmsTable()
     this.createItineraryTable()
-    this.createLocationsTable()
+    this.createLocationsTable()*/
   }
 
   createAlarmsTable() {
-    db.transaction(tr => {
+    /*db.transaction(tr => {
       tr.executeSql('create table if not exists alarms (id integer primary key not null auto_increment, active bit, time varchar(8) not null, itemized bit, localized bit);')
-    })
+    })*/
   }
 
   createItineraryTable() {
-    db.transaction(tr => {
+    /*db.transaction(tr => {
       tr.executeSql('create table if not exists itineraryitems (id integer primary key not null auto_increment, description text, time int, increment int);')
-    })
+    })*/
   }
 
   createLocationsTable() {
