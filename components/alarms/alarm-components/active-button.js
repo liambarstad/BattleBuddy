@@ -1,18 +1,28 @@
 import React, { Component } from 'react'
-import { Image, TouchableHighlight } from 'react-native'
+import { Image, View, TouchableHighlight } from 'react-native'
 const intToBool = require('../../../helpers/gen-helper').intToBool
-const styles = require('../../../styles')
+import { alarmStyles } from '../../../styles'
 
 const getImage = (active) => {
    active ?
-    <Image source={require('../../../assets/alarm/clock-active.png')} /> :
-    <Image source={require('../../../assets/alarm/clock-inactive.png')} />
+    <Image 
+      source={require('../../../assets/alarm/clock-active.png')} 
+      style={alarmStyles.icon}
+    /> :
+    <Image 
+      source={require('../../../assets/alarm/clock-inactive.png')}
+      style={alarmStyles.icon}
+    />
 }
 
 export default ActiveButton = (props) => {
   return (
-    <TouchableHighlight>
-      { getImage(intToBool(props.active)) }
+    <TouchableHighlight
+      onPress={props.toggle}
+    >
+      <View style={alarmStyles.alarmClock}>
+        { getImage(intToBool(props.active)) }
+      </View>
     </TouchableHighlight>
   )
 }

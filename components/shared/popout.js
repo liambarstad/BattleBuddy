@@ -1,24 +1,26 @@
 import React, { Component } from 'react'
-import { View, Button, Picker } from 'react-native'
-import { Platform } from 'expo'
-import { formatTime } from '../../helpers/time-helper'
-const styles = require('../../styles')
+import { Text, View, Button, Platform, DatePickerIOS } from 'react-native'
+import { formatTime, stringToDate } from '../../helpers/time-helper'
+import { shared } from '../../styles'
 
 export default class Popout extends Component {
   constructor(props) {
     super(props)
-    let time = formatTime(this.props.time)
     this.state = {
-      hours: time.slice(0, 1), 
-      minutes: time.slice(3, 4),
-      timeOfDay: time.slice(5, 6),
+      time: this.prepareTime()
     }
-    console.log(this.state)
+  }
+
+  prepareTime() {
+    if (this.props.type === 'time') {
+      return stringToDate(this.props.time)
+    } else {
+
+    }
   }
 
   content() {
-    let type = this.props.type
-    if (type === 'time') {
+    if (this.props.type === 'time') {
       return this.time()
     } else {
       
@@ -26,57 +28,26 @@ export default class Popout extends Component {
   }
 
   time() {
-    return (
-      <View style={styles.pickerAndroid}>
-        <Picker 
-          selectedValue={this.state.hours}
-          onValueChange={(value, ind) => this.setState({hours:value})}
-        >
-          { this.hoursOptions() }
-        </Picker>
-
-        <Picker
-          selectedValue={this.state.minutes}
-          onValueChange={(value, ind) => this.setState({minutes:value})}
-        >
-          { this.minutesOptions() }
-        </Picker>
-
-        <Picker
-          selectedValue={this.state.timeOfDay}
-          onValueChange={(value, ind) => this.setState({timeOfDay:value})}
-        >
-          { this.timeOfDayOptions() }
-        </Picker>
-      </View>
-    )
-  }
-
-  hoursOptions() {
-    let options = []
-    for (i=1; i < 13; i++) {
-      options.push(
-        <Picker.Item value={i} />
+    if (Platform.OS === 'ios') {
+      return (
+        <DatePickerIOS
+          date={this.state.time}
+          onDateChange={(time) => this.setState({time})} 
+          mode='time'
+        />
+      )
+    } else {
+      return(
+        <Text>You Fucked up son</Text>
       )
     }
-    return options
   }
 
-  minutesOptions() {
-    let options = []
-    for (i=0; i < 60; i++) {
-      options.push(
-        <Picker.Item value={i} />
-      )
+  submit = () => {
+    if (this.props.type === 'time') {
+      let time = formatTime(this.state.time)
+      this.props.onSubmit(time)
     }
-    return options
-  }
-
-  timeOfDayOptions() {
-    return [
-      <Picker.Item value='AM' />,
-      <Picker.Item value='PM' />
-    ]
   }
 
   render() {
@@ -85,7 +56,7 @@ export default class Popout extends Component {
         { this.content() }
         <Button
           title='Return'
-          onPress={() => this.props.onSubmit()}
+          onPress={this.submit}
         />
       </View>
     )

@@ -3,78 +3,117 @@ import { StyleSheet } from 'react-native'
 const appOrange = '#ff744d'
 const appBlack = 'black'
 
-const styles = StyleSheet.create({
+const appStyles = StyleSheet.create({
+  mainApp: {
+    height: '100%',
+    backgroundColor: appBlack,
+  },
 
+  mainContent: {
+    height: '60%',
+    backgroundColor: 'white',
+  },
+
+  createButton: {
+    backgroundColor: 'blue',
+  },
+})
+
+const mainTabStyles = StyleSheet.create({
   mainTabs: {
-    flex: 1,
+    height: '15%',
+    marginTop: '10%',
     flexDirection: 'row',
+    backgroundColor: 'red',
+    width: '100%',
+  },
+
+  mainTab: {
+    flex: 1,
+    height: '100%',
+    margin: '2%',
   },
 
   tabOuterActive: {
-    width: '30%',
-    height: '20%',
+    backgroundColor: appBlack,
+    alignItems: 'center',
+  },
+
+  tabOuterInactive: {
+    backgroundColor: appOrange,
     alignItems: 'center',
   },
 
   tabInnerActive: {
-    width: '20%',
-    height: '12.6%',
-    textAlign: 'center',
-  },
-
-  tabTextActive: {
-    color: 'black',
-  },
-
-  tabOuterInactive: {
-    width: '30%',
-    height: '20%',
-    alignItems: 'center',
+    backgroundColor: appOrange,
+    height: '100%',
+    width: '100%',
   },
 
   tabInnerInactive: {
-    width: '20%',
-    height: '12.6%',
-    textAlign: 'center',
+    backgroundColor: appBlack,
+    height: '100%',
+    width: '100%',
+  },
+
+  tabTextActive: {
+    color: appBlack,
   },
 
   tabTextInactive: {
     color: appOrange,
   },
+})
 
-  mainContent: {
-  },
-
+const alarmStyles = StyleSheet.create({
   mainCard: {
-
+    margin: '2%',
   },
 
   alarm: {
     flex: 1,
     flexDirection: 'row',
-    height: '15%',
+    width: '100%',
+    height: 100,
+    backgroundColor: 'blue',
+    borderRadius: 10,
   },
 
-  alarmClock: {
-    width: '10%',
+  icon: {
+    width: '100%',
+    height: '100%',
   },
 
   alarmTime: {
+    fontSize: 30, 
+  },
+
+})          
+
+const shared = StyleSheet.create({
+  form: {
+    margin: '10%',
+  },
+
+  option: {
+    flex: 1,
+    flexDirection: 'row',
+  },
+
+  optionLeft: {
     width: '60%',
+    height: 60,
   },
 
-  alarmLocationButton: {
-    width: '10%',
+  optionRight: {
+    width: '40%',
+    height: 60,
   },
 
-  alarmItineraryButton: {
-    width: '10%',
-  },
-
-  alarmDeleteButton: {
-    width: '10%',
-  },
-            
+  pickers: {
+    flex: 1,
+    flexDirection: 'row',
+  }
 })
 
-module.exports = styles
+module.exports = { appStyles, mainTabStyles, alarmStyles, shared }

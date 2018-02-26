@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { View, Button } from 'react-native'
+import { SQLite } from 'expo'
 import CreateScreen from './components/main-page/create-screen'
 import MainTabs from './components/main-page/main-tabs'
 import MainContent from './components/main-page/main-content'
+import { appStyles } from './styles'
 const boolToInt = require('./helpers/gen-helper').boolToInt
-const styles = require('./styles')
 
 export default class App extends Component {
   constructor(props) {
@@ -20,27 +21,29 @@ export default class App extends Component {
     this.setState({createScreen:!prevState})
   }
 
+  componentDidMount() {
+    SQLite.openDatabase('BattleBuddy.db')
+  }
+
   render() {
     let active = this.state.active
     return (
-      <View>
+      <View style={appStyles.mainApp}>
         <CreateScreen 
           active={boolToInt(this.state.createScreen)} 
           resource={active}
           onClose={() => this.toggleCreateScreen()}
           onSubmit={(info) => this.createAlarm(info)}
         />
-        <View style={styles.mainTabs}>
-          <MainTabs 
-            active={active}
-            changeFunc={(active) => this.setState({active})} 
-          />
-        </View>
-        <View style={styles.mainContent}>
+        <MainTabs 
+          active={active}
+          changeFunc={(active) => this.setState({active})} 
+        />
+        <View style={appStyles.mainContent}>
           <MainContent name={active} />
         </View>
         <Button
-          style={styles.createButton}
+          style={appStyles.createButton}
           onPress={() => this.toggleCreateScreen()} 
           title='+' 
         />

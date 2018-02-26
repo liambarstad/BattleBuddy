@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Modal } from 'react-native'
-//import { Constants, Location, Permissions } from 'expo'
+import { Constants, Location, Permissions } from 'expo'
 
 export default class LocationInterface extends Component {
   constructor(props) {

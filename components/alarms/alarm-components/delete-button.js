@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
 import { Image, TouchableHighlight } from 'react-native'
+import { alarmStyles } from '../../../styles'
 const intToBool = require('../../../helpers/gen-helper').intToBool
-const styles = require('../../../styles')
 
 export default DeleteButton = (props) => {
   return (
-    <TouchableHighlight>
+    <TouchableHighlight
+      onPress={() => props.destroy()} 
+    >
       <Image
-        source={require('../../../assets/alarm/delete-button.png')
+        source={require('../../../assets/alarm/delete-button.png')}
+        style={alarmStyles.icon}
       />
     </TouchableHighlight>
   )

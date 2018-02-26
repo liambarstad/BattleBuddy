@@ -1,41 +1,43 @@
 import React, { Component } from 'react'
 import { Text, View } from 'react-native'
 const intToBool = require('../../helpers/gen-helper').intToBool
-const styles = require('../../styles')
+import { mainTabStyles } from '../../styles'
 
 const outerActive = (active) => {
   if (active) {
-    styles.tabOuterActive
+    mainTabStyles.tabOuterActive
   } else {
-    styles.tabOuterInactive
+    mainTabStyles.tabOuterInactive
   }
 }
 
 const innerActive = (active) => {
   if (active) {
-    return styles.tabInnerActive
+    return mainTabStyles.tabInnerActive
   } else {
-    return styles.tabInnerInactive
+    return mainTabStyles.tabInnerInactive
   }
 }
 
 const  textActive = (active) => {
   if (active) {
-    return styles.tabTextActive
+    return mainTabStyles.tabTextActive
   } else {
-    return styles.tabTextInactive
+    return mainTabStyles.tabTextInactive
   }
 }
 
 export default  MainTab = (props) => {
   let active = intToBool(props.active)  
   return (
-    <View 
-      style={outerActive(active)}
-      onPress={() => props.onPress()}
-    >
-      <View style={innerActive(active)}>
-        <Text style={textActive(active)}>{props.name}</Text>
+    <View style={mainTabStyles.mainTab}>
+      <View 
+        style={outerActive(active)}
+        onPress={() => props.changeFunc(props.name)}
+      >
+        <View style={innerActive(active)}>
+          <Text style={textActive(active)}>{props.name}</Text>
+        </View>
       </View>
     </View>
           )

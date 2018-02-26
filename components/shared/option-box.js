@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { Modal, View, Text, Slider, TouchableHighlight, } from 'react-native'
 import Popout from './popout'
 import Expo from 'expo'
-const formatTime = require('../../helpers/time-helper').formatTime
-const styles = require('../../styles')
+import { formatTime } from '../../helpers/time-helper'
+import { shared } from '../../styles'
 
 export default class OptionBox extends Component {
   constructor(props) {
@@ -14,8 +14,8 @@ export default class OptionBox extends Component {
     }
   }
 
-  componentWillUpdate() {
-    {/*add to parent state*/}
+  componentDidUpdate() {
+
   }
 
   prepareValue() {
@@ -75,12 +75,12 @@ export default class OptionBox extends Component {
 
   render() {
     return (
-      <View>
-        <View style={styles.optionLeft}>
+      <View style={shared.option}>
+        <View style={shared.optionLeft}>
           <Text>{ this.props.name }</Text> 
         </View>
         
-        <View style={styles.optionRight}>
+        <View style={shared.optionRight}>
           { this.modal() }
           { this.getValue() }
         </View>
