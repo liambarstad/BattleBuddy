@@ -27,7 +27,7 @@ export default class ItineraryForm extends Component {
             type='task-time'
             popout='true'
             value={this.state.time}
-            onSubmit={(time) => this.setState({time})
+            onSubmit={(time) => this.setState({time})}
           />
         </ScrollView>
 

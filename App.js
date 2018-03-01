@@ -10,9 +10,6 @@ const boolToInt = require('./helpers/gen-helper').boolToInt
 export default class App extends Component {
   constructor(props) {
     super(props)
-    this.state = { 
-      active: 'alarms',
-    }
   }
 
 
@@ -38,15 +35,22 @@ export default class App extends Component {
     
   }
 
+  switchTabs(active) {
+    this.refs.content.setState({ active })
+  }
+
   render() {
     return (
       <View style={appStyles.mainApp}>
         <MainTabs 
-          active={this.state.active}
-          changeFunc={(active) => this.setState({active})} 
+          active='alarms'
+          changeFunc={(active) => this.switchTabs({active})} 
         />
         <View style={appStyles.mainContent}>
-          <MainContent name={this.state.active} />
+          <MainContent 
+            ref='content'
+            active='alarms'
+          />
         </View>
       </View>
     )

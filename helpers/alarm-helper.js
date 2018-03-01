@@ -1,4 +1,9 @@
+import React from 'react'
+import { Text } from 'react-native'
 import { formatTime } from './time-helper'
+import { boolToInt } from './gen-helper'
+const Alarm = require('../components/alarms/alarm').default
+//import { Alarm } from '../components/alarms/alarm'
 
 const validateNew = (obj={}) => {
   let info = {}
@@ -15,4 +20,15 @@ const validateNew = (obj={}) => {
   return info
 }
 
-module.exports = { validateNew }
+const formatAlarm = (alarm) => {
+  return <Alarm
+    key={alarm.id.toString()}
+    id={alarm.id.toString()}
+    active={boolToInt(alarm.active)}
+    time={alarm.time}
+    itemized={boolToInt(alarm.itemized)}
+    localized={boolToInt(alarm.localized)}
+  />
+}
+
+module.exports = { validateNew, formatAlarm }

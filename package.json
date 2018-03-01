@@ -25,12 +25,15 @@
     ]
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "expo": "^25.0.0",
     "firebase": "^4.10.1",
     "react": "16.2.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-25.0.0.tar.gz",
+    "react-native-axios": "^0.17.1",
     "react-native-cli": "^2.0.1",
     "react-native-sqlite-storage": "^3.3.4",
-    "react-native-web": "^0.5.0"
+    "react-native-web": "^0.5.0",
+    "uuid": "^3.2.1"
   }
 }

@@ -11,10 +11,10 @@ export default class Alarm extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      active: this.props.active.toString(),
+      active: this.props.active,
       time: this.props.time,
-      itemized: this.props.itemized.toString(),
-      localized: this.props.localized.toString(),
+      itemized: this.props.itemized,
+      localized: this.props.localized,
       editing: false,
     }
   }
@@ -36,7 +36,7 @@ export default class Alarm extends Component {
       <View style={alarmStyles.alarm}>
         <ActiveButton 
           active={this.state.active} 
-          toggle={() => this.toggleActive(this.state.id)}
+          toggle={() => this.toggleActive(this.props.id)}
         />
 
         <View>
@@ -55,7 +55,7 @@ export default class Alarm extends Component {
         />
 
         <DeleteButton 
-          destroy={() => this.destroy('1')}
+          destroy={() => this.destroy(this.props.id)}
         />
       </View>
         )

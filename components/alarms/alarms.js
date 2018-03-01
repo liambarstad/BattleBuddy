@@ -6,6 +6,7 @@ import CreateScreen from '../shared/create-screen'
 import { validateNew } from '../../helpers/alarm-helper'
 import { boolToInt } from '../../helpers/gen-helper'
 import { alarmStyles, shared } from '../../styles'
+const AlarmModel = require('../../models/alarm-model')
 //const db = require('../../helpers/db')
 
 export default class Alarms extends Component {
@@ -17,22 +18,14 @@ export default class Alarms extends Component {
     }
   }
 
-  //componentDidMount() {
-    //let alarms = this.getAll()
-  //}
+  componentDidMount() {
+    AlarmModel.getAll()
+      .then(alarms => this.setState({ alarms }))
+  }
 
   toggleCreateScreen = () => {
     let prevState = this.state.createScreen
     this.setState({createScreen:!prevState})
-  }
-
-  formatAlarm(alarm) {
-    return  <Alarm 
-        active={alarm.active}
-        time={alarm.time}
-        itemized={alarm.itemized}
-        localized={alarm.localized}
-      />
   }
 
   render() {
@@ -51,35 +44,18 @@ export default class Alarms extends Component {
         <Button
           style={shared.createButton}
           onPress={this.toggleCreateScreen} 
-          title='+' 
+          title='+ Alarm' 
         />
       </View>
         )
   }
 
-
-
-  getAll() {
-    /*db.transaction(tr => {
-      tr.executeSql('select * from alarms order by active;',
-        null,
-        (_, alarms) => this.setState({alarms, createScreen:false}),
-        (_, alarms) => this.setState({alarms, createScreen:false})
-      )
-    })*/
-  }
-
   create(info) {
     let validated = validateNew(info) 
-    let newAlarm = this.formatAlarm(validated)
-    this.setState({alarms: [newAlarm, ...this.state.alarms], createScreen: false})
-    /*db.transaction(tr => {
-      tr.executeSql('insert into alarms (active, time, itemized, localized) values (?, ?, ?, ?);',
-        [validated.active, validated.time, validated.itemized, validated.localized],
-        (_, newAlarm) => this.setState({ alarms: [newAlarm, ...this.state.alarms], createScreen: false }),
-        (query, alarms) => this.setState({alarms: query, createScreen:false })
-      )
-    })*/
+    AlarmModel.create(validated)
+      .then(newAlarm => {
+        this.setState({alarms: [newAlarm, ...this.state.alarms], createScreen: false})
+      })
   }
 
 }

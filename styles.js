@@ -19,44 +19,25 @@ const appStyles = StyleSheet.create({
 const mainTabStyles = StyleSheet.create({
   mainTabs: {
     height: '15%',
+    width: '100%',
     marginTop: '10%',
     flexDirection: 'row',
+  },
+
+  tabActive: {
+    height: '100%',
+    width: '33%',
     backgroundColor: appOrange,
-    width: '100%',
-  },
-
-  mainTab: {
-    height: '100%',
-  },
-
-  tabOuterActive: {
-    backgroundColor: appBlack,
-    height: '100%',
+    justifyContent: 'center',
     alignItems: 'center',
-    margin: '50%',
-    justifyContent: 'center',
   },
 
-  tabOuterInactive: {
-    backgroundColor: appOrange,
+  tabInactive: {
     height: '100%',
-    alignItems: 'center',
-    margin: '2%',
-    justifyContent: 'center',
-  },
-
-  tabInnerActive: {
-    backgroundColor: appOrange,
-    height: '100%',
-    width: '100%',
-    justifyContent: 'center',
-  },
-
-  tabInnerInactive: {
+    width: '33%',
     backgroundColor: appBlack,
-    height: '100%',
-    width: '100%',
     justifyContent: 'center',
+    alignItems: 'center',
   },
 
   icon: {

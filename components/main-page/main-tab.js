@@ -3,19 +3,11 @@ import { Text, View, TouchableHighlight, Image } from 'react-native'
 const intToBool = require('../../helpers/gen-helper').intToBool
 import { mainTabStyles } from '../../styles'
 
-const outerActive = (active) => {
+const activeStyle = (active) => {
   if (intToBool(active)) {
-    mainTabStyles.tabOuterActive
+    return mainTabStyles.tabActive
   } else {
-    mainTabStyles.tabOuterInactive
-  }
-}
-
-const innerActive = (active) => {
-  if (intToBool(active)) {
-    return mainTabStyles.tabInnerActive
-  } else {
-    return mainTabStyles.tabInnerInactive
+    return mainTabStyles.tabInactive
   }
 }
 
@@ -69,15 +61,13 @@ const tabImage = (name, active) => {
 
 export default  MainTab = (props) => {
   return (
-    <View style={mainTabStyles.mainTab, outerActive(props.active)}>
       <TouchableHighlight
-        style={innerActive(props.active)}
+        style={activeStyle(props.active)}
         onPress={props.changeFunc.bind(this)}
       >
         <View>
         { tabImage(props.name, props.active) } 
         </View>
       </TouchableHighlight>
-    </View>
           )
 }
