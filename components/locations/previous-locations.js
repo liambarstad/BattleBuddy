@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Modal } from 'react-native'
+import { View, Text, Button, ScrollView } from 'react-native'
+import { shared } from '../../styles'
 const LocationModel = require('../../models/location-model')
 
 export default class PreviousLocations extends Component {
@@ -7,20 +8,31 @@ export default class PreviousLocations extends Component {
     super(props)
     this.state = {
       locations: [],
-      pickedLocation: null,
     }
   }
 
   componentDidMount() {
-    LocationModel.getAllSelection(this.pickLocation)
+    LocationModel.getAllPrevious(this.props.onPress)
       .then(locations => this.setState({ locations }))
   }
 
-  pickLocation(pickedLocation) {
-    this.setState({ pickedLocation }) 
+  locations() {
+    if (this.state.locations.length > 0) {
+      return this.state.locations
+    } else {
+      return (
+        <Text>No Saved Locations</Text>
+      )
+    }
   }
 
   render() {
-    { this.state.locations } 
+    return (
+      <View style={shared.form}>
+        <ScrollView>
+          { this.locations() } 
+        </ScrollView>
+      </View>
+    )
   }
 }

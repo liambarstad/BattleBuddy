@@ -1,9 +1,30 @@
 import React from 'react'
 import { Text } from 'react-native'
-import { Permissions, Location } from 'expo'
+import { Permissions } from 'expo'
+import { Location as LocationService } from 'expo'
+import Location from '../components/locations/location'
+import PreviousLocation from '../components/locations/previous-location'
 
 const formatLocation = (data) => {
-  return <Text>location goes here</Text>
+  return (
+    <Location
+      key={data.id}
+      name={data.name}
+      longitude={data.longitude}
+      latitude={data.latitude}
+    />
+  )
+}
+
+const previousLocation = (data, callback) => {
+  return (
+    <PreviousLocation
+      key={data.id}
+      id={data.id}
+      name={data.name}
+      onSubmit={callback}
+    />
+  )
 }
 
 const validateNew = (info) => {
@@ -11,23 +32,12 @@ const validateNew = (info) => {
 }
 
 const verifyLocation = async () => {
-  let { status } = await Permissions.getAsync(Permissions.LOCATION)
-  if (status != 'granted') {
-    status = await Permissions.askAsync(Permissions.LOCATION).status
-    if (status === 'granted') {
-      const location = await getLocation() 
-    } else {
-      return null
-    }
-  } else {
-    const location = await getLocation()
-    return location
-  }
+  let { status } = await Permissions.askAsync(Permissions.LOCATION)
+  return status
 }
 
 const getLocation = async () => {
-  const location = await Location.getCurrentPosition({ enableHighAccuracy: true }) 
-  return location
+  return await LocationService.getCurrentPositionAsync() 
 }
 
-module.exports = { verifyLocation }
+module.exports = { formatLocation, previousLocation, verifyLocation, getLocation }

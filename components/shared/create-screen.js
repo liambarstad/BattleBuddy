@@ -22,7 +22,7 @@ export default CreateScreen = (props) => {
 renderForm = (resource, callback) => {
   if (resource === "alarms") {
     return <AlarmForm submit={callback} />
-  } else if (resource = "itinerary") {
+  } else if (resource === "itinerary") {
     return <ItineraryForm submit={callback} />
   } else {
     return <LocationForm submit={callback} />

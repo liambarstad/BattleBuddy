@@ -3,7 +3,8 @@ import { Text, View, Button, ScrollView } from 'react-native'
 import { boolToInt } from '../../helpers/gen-helper' 
 import { locationStyles, shared } from '../../styles'
 import { validateNew } from '../../helpers/location-helper'
-import { CreateScreen } from '../shared/create-screen'
+import CreateScreen from '../shared/create-screen'
+import Location from './location'
 const LocationModel = require('../../models/location-model')
 
 export default class Locations extends Component {

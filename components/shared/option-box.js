@@ -23,7 +23,8 @@ export default class OptionBox extends Component {
         case 'location':
           return (
             <LocationBox 
-              value={this.props.value}
+              id={this.props.id}
+              name={this.props.value}
               onSubmit={this.props.onSubmit}
             />
           )
@@ -31,7 +32,7 @@ export default class OptionBox extends Component {
         case 'slider':
           return (
             <Slider
-              value={this.props.value}
+              value={parseInt(this.props.value)}
               minimumValue={0}
               maximumValue={1}
               onValueChange={(val) => this.props.onSubmit(val)}

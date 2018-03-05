@@ -7,14 +7,20 @@ const boolToInt = require('../../helpers/gen-helper').boolToInt
 export default class AlarmForm extends Component {
   constructor(props) {
     super(props)
+    let info
+    this.props.info ?
+      info = JSON.parse(this.props.info) :
+      info = {
+        location: {}, 
+      }
     this.state = {
       editing: false,
-    }
-    if (this.props.info) {
-      this.state.info = JSON.parse(this.props.info)
-      this.state.location = Locations.findByAlarm(this.state.info.id)
-    } else {
-      this.state.info = {}
+      info: {
+        time: info.time,
+        locationId: info.location.id,
+        locationName: info.location.name,
+        itemized: info.itemized,
+      }
     }
   }
   
@@ -36,7 +42,15 @@ export default class AlarmForm extends Component {
           <OptionBox
             name='Location'
             type='location'
-            value={this.state.location}
+            id={this.state.info.locationId}
+            value={this.state.info.locationName}
+            onSubmit={(id, name) => this.setState({
+              editing: false,
+              info:{
+                locationId: id,
+                locationName: name
+              },
+            })}
           />
           <OptionBox
             name='Sync Itinerary'

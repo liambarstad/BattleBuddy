@@ -1,20 +1,22 @@
 import React, { Component } from 'react'
 import { Modal, Text, View, TouchableHighlight } from 'react-native'
+import LocationForm from '../../locations/location-form'
 
 export default class LocationBox extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      name: this.props.name,
+      id: this.props.id || null,
+      name: this.props.name || null,
       longitude: this.props.longitude,
       latitude: this.props.latitude,
       editing: false,
     }
   }
 
-  submit() {
+  submit(id, name) {
     this.setState({ editing: false })
-    this.props.onSubmit(this.state.value)
+    this.props.onSubmit(id, name)
   }
 
   modal() {
@@ -25,7 +27,13 @@ export default class LocationBox extends Component {
         presentationStyle='fullScreen'
         onRequestClose={() => this.setState({editing:false})}
       >
-        <Text>FackYou</Text>
+        <LocationForm 
+          prev='true' 
+          onSubmit={(id, name) => {
+            this.setState({editing:false})
+            this.props.onSubmit(id, name)
+          }}
+        />
       </Modal>
     )
   }

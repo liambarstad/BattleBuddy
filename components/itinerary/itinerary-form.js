@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import { ScrollView, View, Text } from 'react-native'
+import { ScrollView, View, Button, Text } from 'react-native'
+import OptionBox from '../shared/option-box'
+import { shared } from '../../styles'
 
 export default class ItineraryForm extends Component {
   constructor(props) {
@@ -13,26 +15,24 @@ export default class ItineraryForm extends Component {
 
   render() {
     return (
-      <View>
+      <View style={shared.form}>
         <ScrollView>
           <OptionBox
             name='Title'
             type='text'
-            popout='true'
             value={this.state.title}
             onSubmit={(title) => this.state.title}
           />
           <OptionBox
             name='Task Time'
-            type='task-time'
-            popout='true'
+            type='taskTime'
             value={this.state.time}
             onSubmit={(time) => this.setState({time})}
           />
         </ScrollView>
 
         <Button
-          style={itineraryStyles.formSubmit}
+          style={shared.createButton}
           onPress={this.submit}
           title='Add Itinerary Item'
         />

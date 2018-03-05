@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Text, View, Image, TouchableHighlight } from 'react-native'
-import { alarmStyles } from '../../styles'
+import { mainListing, alarmStyles } from '../../styles'
 const boolToInt = require('../../helpers/gen-helper').boolToInt
 import ActiveButton from './alarm-components/active-button'
 import ItineraryButton from './alarm-components/itinerary-button'
@@ -33,7 +33,7 @@ export default class Alarm extends Component {
 
   render() {
     return (
-      <View style={alarmStyles.alarm}>
+      <View style={mainListing.component}>
         <ActiveButton 
           active={this.state.active} 
           toggle={() => this.toggleActive(this.props.id)}

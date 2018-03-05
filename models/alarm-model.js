@@ -11,18 +11,10 @@ const getAll = async () => {
     alarms.push(formatAlarm(alarm)) 
   })
   return alarms
-    /*db.transaction(tr => {
-      tr.executeSql('select * from alarms order by active;',
-        null,
-        (_, alarms) => this.setState({alarms, createScreen:false}),
-        (_, alarms) => this.setState({alarms, createScreen:false})
-      )
-    })*/
 }
 
 const create = async (info) => {
   const { data } = await axios.post('/alarms', info)
-  //return <Text>{JSON.stringify(info)}</Text>
   return formatAlarm(data)
 }
 

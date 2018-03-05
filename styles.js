@@ -47,12 +47,8 @@ const mainTabStyles = StyleSheet.create({
 
 })
 
-const alarmStyles = StyleSheet.create({
-  mainCard: {
-    margin: '2%',
-  },
-
-  alarm: {
+const mainListing = StyleSheet.create({
+  component: {
     flex: 1,
     flexDirection: 'row',
     maxWidth: '100%',
@@ -62,6 +58,13 @@ const alarmStyles = StyleSheet.create({
     borderRadius: 15,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+
+})
+
+const alarmStyles = StyleSheet.create({
+  mainCard: {
+    margin: '2%',
   },
 
   icon: {
@@ -82,7 +85,9 @@ const alarmStyles = StyleSheet.create({
 
 const shared = StyleSheet.create({
   form: {
-    margin: '10%',
+    marginTop: '10%',
+    marginRight: '2%',
+    marginLeft: '2%',
   },
 
   option: {
@@ -115,4 +120,60 @@ const shared = StyleSheet.create({
 
 })
 
-module.exports = { appStyles, mainTabStyles, alarmStyles, shared }
+const locationStyles = StyleSheet.create({
+  title: {
+
+  },
+
+  editButton: {
+
+  },
+
+  mapView: {
+    height: '100%',
+  },
+
+  outerTextInput: {
+    width: '100%',
+    height: 60,
+    marginRight: '5%',
+    marginLeft: '5%',
+    backgroundColor: 'blue',
+    justifyContent: 'center',
+  },
+
+  textInput: {
+    width: '100%',
+    paddingRight: '5%',
+    paddingLeft: '5%',
+    backgroundColor: 'lightblue',
+    fontSize: 30,
+  },
+
+  locationInput: {
+    backgroundColor: 'blue',
+    height: '100%',
+    margin: '2%',
+  }
+})
+
+const previousListing = StyleSheet.create({
+  component: {
+    flex: 1,
+    flexDirection: 'row',
+    maxWidth: '100%',
+    margin: '2%',
+    height: 70,
+    backgroundColor: appBlack,
+    borderRadius: 15,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  text: { 
+    fontSize: 15,
+    color: appOrange,
+  },
+})
+
+module.exports = { appStyles, mainTabStyles, mainListing, previousListing, alarmStyles, locationStyles, shared }
