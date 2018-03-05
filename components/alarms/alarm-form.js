@@ -30,18 +30,16 @@ export default class AlarmForm extends Component {
           <OptionBox
             name='Time'
             type='time'
-            popout='true'
             value={this.state.info.time}
             onSubmit={(time) => this.setState({info:{time:time}})}
           />
           <OptionBox
             name='Location'
             type='location'
-            popout='true'
             value={this.state.location}
           />
           <OptionBox
-            name='Itinerary'
+            name='Sync Itinerary'
             type='slider'
             value={boolToInt(this.state.info.itemized)}
             onSubmit={(val) => this.setState({info:{itemized:val}})}
@@ -49,16 +47,12 @@ export default class AlarmForm extends Component {
           <OptionBox
             name='Repeat'
             type='dropdown'
-            popout='true'
             value='Never'
-            disabled='true'
           />
           <OptionBox
             name='Wakeup'
             type='dropdown'
-            popout='true'
             value='Default'
-            disabled='true'
           />
         </ScrollView>
 

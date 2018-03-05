@@ -1,4 +1,14 @@
+import React from 'react'
+import { Text } from 'react-native'
 import { Permissions, Location } from 'expo'
+
+const formatLocation = (data) => {
+  return <Text>location goes here</Text>
+}
+
+const validateNew = (info) => {
+  return info
+}
 
 const verifyLocation = async () => {
   let { status } = await Permissions.getAsync(Permissions.LOCATION)

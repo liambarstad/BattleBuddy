@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Modal } from 'react-native'
 import AlarmForm from '../alarms/alarm-form'
 import ItineraryForm from '../itinerary/itinerary-form'
-import NewLocationForm from '../locations/new-location-form'
+import LocationForm from '../locations/location-form'
 const intToBool = require('../../helpers/gen-helper').intToBool
 
 export default CreateScreen = (props) => {
@@ -25,6 +25,6 @@ renderForm = (resource, callback) => {
   } else if (resource = "itinerary") {
     return <ItineraryForm submit={callback} />
   } else {
-    return <NewLocationForm submit={callback} />
+    return <LocationForm submit={callback} />
   }
 }

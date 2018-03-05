@@ -23,6 +23,14 @@ export default class Alarms extends Component {
       .then(alarms => this.setState({ alarms }))
   }
 
+  create(info) {
+    let validated = validateNew(info) 
+    AlarmModel.create(validated)
+      .then(newAlarm => {
+        this.setState({alarms: [newAlarm, ...this.state.alarms], createScreen: false})
+      })
+  }
+
   toggleCreateScreen = () => {
     let prevState = this.state.createScreen
     this.setState({createScreen:!prevState})
@@ -50,12 +58,5 @@ export default class Alarms extends Component {
         )
   }
 
-  create(info) {
-    let validated = validateNew(info) 
-    AlarmModel.create(validated)
-      .then(newAlarm => {
-        this.setState({alarms: [newAlarm, ...this.state.alarms], createScreen: false})
-      })
-  }
 
 }

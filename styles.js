@@ -109,6 +109,10 @@ const shared = StyleSheet.create({
     backgroundColor: 'blue',
   },
 
+  flex1: {
+    flex: 1,
+  },
+
 })
 
 module.exports = { appStyles, mainTabStyles, alarmStyles, shared }
