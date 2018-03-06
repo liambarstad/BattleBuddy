@@ -1,15 +1,8 @@
 import React, { Component } from 'react'
 import { Image, View, TouchableHighlight } from 'react-native'
 import { alarmStyles } from '../../../styles'
-const intToBool = require('../../../helpers/gen-helper').intToBool
-
-const getImage = (active) => {
-  active ?
-    <Image 
-    /> :
-    <Image 
-    />
-}
+import { intToBool } from '../../../helpers/gen-helper'
+const AlarmModel = require('../../../models/alarm-model')
 
 export default class ItineraryButton extends Component {
   constructor(props) {
@@ -41,15 +34,20 @@ export default class ItineraryButton extends Component {
     }
   }
 
-  toggle() {
-
+  toggle = async () => {
+    let active = !this.state.active
+    this.setState({ active })
+    let result = await AlarmModel.toggleItinerary(this.props.id, active)
+    !result ?
+      this.setState({ active: !this.state.active }) :
+      null
   }
 
   render() {
     return (
       <TouchableHighlight
         style={alarmStyles.icon}
-        onPress={this.toggle}
+        onPress={() => this.toggle()}
       >
       <View>
         { this.icon() }

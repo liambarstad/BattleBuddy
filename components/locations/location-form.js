@@ -40,6 +40,7 @@ export default class LocationForm extends Component {
 
   submitNew() {
     //for new entry
+    //end with this.props.onSubmit()
   }
 
   prev() {

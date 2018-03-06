@@ -31,4 +31,28 @@ const toggleActive = async (id, desiredValue) => {
   }
 }
 
-module.exports = { getAll, create, toggleActive }
+const toggleItinerary = async (id, desiredValue) => {
+  const info = { itemized: boolToInt(desiredValue) }
+  const { data } = await axios.patch(`/alarms/${id}`, info)
+  if (data.itemized === desiredValue) {
+    let alarmItemized = Scheduler.itemizeAlarm(id)
+    return alarmItemized
+  } else {
+    return false
+  }
+}
+
+const localize = async (alarmId, locationId) => {
+  return true
+}
+
+const destroy = async (id) => {
+  const { status } = await axios.delete(`/alarms/${id}`)
+  if (status === 200) {
+    return true
+  } else {
+    return false
+  }
+}
+
+module.exports = { getAll, create, toggleActive, toggleItinerary, localize, destroy }

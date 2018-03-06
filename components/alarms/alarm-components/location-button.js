@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
-import { Image, View, TouchableHighlight } from 'react-native'
+import { Image, View, Modal, TouchableHighlight } from 'react-native'
 import { alarmStyles } from '../../../styles'
-const intToBool = require('../../../helpers/gen-helper').intToBool
+import { intToBool } from '../../../helpers/gen-helper'
+import LocationForm from '../../locations/location-form'
+const AlarmModel = require('../../../models/alarm-model')
 
 export default class LocationButton extends Component {
   constructor(props) {
@@ -10,6 +12,7 @@ export default class LocationButton extends Component {
       activeImage: null,
       inactiveImage: null,
       active: intToBool(this.props.active),
+      editing: false,
     }
   }
 
@@ -33,17 +36,38 @@ export default class LocationButton extends Component {
     }
   }
 
-  toggle() {
+  locationForm() {
+    return (
+      <Modal
+        visible={this.state.editing}
+        animationType='slide'
+        presentationType='fullScreen'
+        onRequestClose={() => this.setState({editing:false})}
+      >
+        <LocationForm 
+          onSubmit={(locationId) => this.setLocation(locationId)} 
+        />
+      </Modal>
+    )
+  }
 
+  setLocation = async (locationId) => {
+    //some bullshit
+    this.setState({ active: true, editing: false })
+    let result = await AlarmModel.localize(this.props.id, locationId) 
+    !result ?
+      this.setState({ active: false }) :
+      null
   }
 
   render() {
     return (
       <TouchableHighlight
         style={alarmStyles.icon}
-        onPress={this.toggle}
+        onPress={() => this.setState({ editing: true })}
       >
         <View>
+          { this.locationForm() }
           { this.icon() }
         </View>
       </TouchableHighlight>

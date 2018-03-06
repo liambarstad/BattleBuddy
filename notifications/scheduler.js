@@ -2,4 +2,8 @@ const setAlarm = (id) => {
   return true
 }
 
-module.exports = { setAlarm }
+const itemizeAlarm = (id) => {
+  return true
+}
+
+module.exports = { setAlarm, itemizeAlarm }
