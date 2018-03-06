@@ -19,24 +19,12 @@ export default class Alarm extends Component {
     }
   }
 
-  toggleActive() {
-    
-    //const active = !this.state.active
-    //const id = this.state.id 
-    //AlarmModel.toggleActive(id)
-    //this.setState({active})
-  }
-
-  destroy() {
-
-  }
-
   render() {
     return (
       <View style={mainListing.component}>
         <ActiveButton 
+          id={this.props.id}
           active={this.state.active} 
-          toggle={() => this.toggleActive(this.props.id)}
         />
 
         <View>
@@ -47,15 +35,17 @@ export default class Alarm extends Component {
         </View>
 
         <LocationButton 
+          id={this.props.id}
           active={this.state.localized}
         />
 
         <ItineraryButton 
+          id={this.props.id}
           active={this.state.itemized} 
         />
 
         <DeleteButton 
-          destroy={() => this.destroy(this.props.id)}
+          id={this.props.id}
         />
       </View>
         )

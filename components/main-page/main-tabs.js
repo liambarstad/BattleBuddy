@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { View } from 'react-native'
 import { mainTabStyles } from '../../styles'
-const boolToInt = require('../../helpers/gen-helper').boolToInt
-const { default: MainTab } = require('./main-tab')
-
+import AlarmTab from './main-tabs/alarm-tab'
+import LocationTab from './main-tabs/location-tab'
+import ItineraryTab from './main-tabs/itinerary-tab'
+import { boolToInt } from '../../helpers/gen-helper'
 
 
 export default class MainTabs extends Component {
@@ -14,32 +15,31 @@ export default class MainTabs extends Component {
     }
   }
 
-  isActive(name) {
-    return boolToInt(Boolean(this.state.active === name))
+  componentWillReceiveProps(nextProps) {
+    this.setState({ active: nextProps.active })
   }
 
   switchTabs(active) {
-    this.setState({ active })
-    this.props.changeFunc(active)
+    this.props.onPress(active)
   }
 
   render() {
     return (
       <View style={mainTabStyles.mainTabs}>      
-        <MainTab 
-          name="alarms"  
-          active={this.isActive("alarms")} 
-          changeFunc={(active) => this.switchTabs(active)}
+        <AlarmTab
+          ref='alarmTab'
+          active={this.state.active}
+          onPress={(active) => this.switchTabs(active)}
         />
-        <MainTab 
-          name="locations" 
-          active={this.isActive("locations")}
-          changeFunc={(active) => this.switchTabs(active)}
+        <LocationTab
+          ref='locationTab'
+          active={this.state.active}
+          onPress={(active) => this.switchTabs(active)}
         />
-        <MainTab 
-          name="itinerary" 
-          active={this.isActive("itinerary")}
-          changeFunc={(active) => this.switchTabs(active)}
+        <ItineraryTab
+          ref='itineraryTab'
+          active={this.state.active}
+          onPress={(active) => this.switchTabs(active)}
         />
       </View>
         )
