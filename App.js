@@ -5,7 +5,6 @@ import MainTabs from './components/main-page/main-tabs'
 import MainContent from './components/main-page/main-content'
 import { appStyles, shared } from './styles'
 const boolToInt = require('./helpers/gen-helper').boolToInt
-//const db = require('./helpers/db')
 
 export default class App extends Component {
   constructor(props) {

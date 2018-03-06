@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Image, View, TouchableHighlight } from 'react-native'
-const intToBool = require('../../../helpers/gen-helper').intToBool
+import { intToBool } from '../../../helpers/gen-helper'
 import { alarmStyles } from '../../../styles'
+const AlarmModel = require('../../../models/alarm-model')
 
 export default class ActiveButton extends Component {
   constructor(props) {
@@ -33,19 +34,24 @@ export default class ActiveButton extends Component {
     }
   }
 
-  toggle() {
-
+  toggle = async () => {
+    let active = !this.state.active 
+    this.setState({ active })
+    let result = await AlarmModel.toggleActive(this.props.id, active)
+    !result ?
+      this.setState({ active: !this.state.active }) :
+      null
   }
 
   render() {
     return (
       <TouchableHighlight
         style={alarmStyles.icon}
-        onPress={this.toggle}
+        onPress={() => this.toggle()}
       >
         <View>
-        { this.icon() }
-      </View>
+          { this.icon() }
+        </View>
       </TouchableHighlight>
     )
   }

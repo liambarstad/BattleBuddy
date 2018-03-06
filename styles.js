@@ -122,11 +122,13 @@ const shared = StyleSheet.create({
 
 const locationStyles = StyleSheet.create({
   title: {
-
+    color: appOrange,
+    fontSize: 25,
   },
 
   editButton: {
-
+    height: 30,
+    width: 30,
   },
 
   mapView: {

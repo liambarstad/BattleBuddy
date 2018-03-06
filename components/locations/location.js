@@ -12,11 +12,23 @@ export default class Location extends Component {
     }
   }
 
+  truncateName() {
+    let truncated = this.state.name.slice(0, 21)
+    if (truncated.length > 20) {
+      truncated += '...'
+    }
+    return truncated
+  }
+
   render() {
     return (
       <View style={mainListing.component}>
-        <View style={locationStyles.title}>
-          <Text>{ this.state.name }</Text>
+        <View>
+          <Text
+            style={locationStyles.title} 
+          >
+            { this.truncateName() }
+          </Text>
         </View>
 
         <TouchableHighlight>

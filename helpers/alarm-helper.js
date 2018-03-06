@@ -2,8 +2,7 @@ import React from 'react'
 import { Text } from 'react-native'
 import { formatTime } from './time-helper'
 import { boolToInt } from './gen-helper'
-const Alarm = require('../components/alarms/alarm').default
-//import { Alarm } from '../components/alarms/alarm'
+import Alarm from '../components/alarms/alarm'
 
 const validateNew = (obj={}) => {
   let info = {}
