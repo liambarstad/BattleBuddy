@@ -13,7 +13,8 @@ Install the expo command line interface
 ```npm install -g exp```
 
 Check that expo is correctly installed and is updated to the most recent version
-```exp -V => 49.2.2```
+```exp -V```
+The current version should be 49.2.2 or higher
 
 To run the emulator
 ```exp start --ios```
