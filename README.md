@@ -6,6 +6,29 @@
 
 ## Intallation
 
+If you do not already have npm installed, refer to the documentation here:
+https://docs.npmjs.com/getting-started/installing-node
+
+Install the expo command line interface
+
+```
+npm install -g exp
+```
+
+Check that expo is correctly installed and is updated to the most recent version. The current version should be 49.2.2 or higher.
+
+```
+exp -V
+```
+
+To run the emulator
+
+```
+exp start --ios
+```
+
+If you do not already have an account, choose the option to make a new account and fill in the email and password. No confirmation email will be sent and there are no password requirements.
+
 ## Current Features
 
 * See all alarms, locations, and itinerary items
