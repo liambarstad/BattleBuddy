@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
 import { Text, View, Button, ScrollView } from 'react-native'
-import { SQLite } from 'expo'
 import Alarm from './alarm'
 import CreateScreen from '../shared/create-screen'
 import { validateNew } from '../../helpers/alarm-helper'
 import { boolToInt } from '../../helpers/gen-helper'
 import { alarmStyles, shared } from '../../styles'
 const AlarmModel = require('../../models/alarm-model')
-//const db = require('../../helpers/db')
 
 export default class Alarms extends Component {
   constructor(props) {

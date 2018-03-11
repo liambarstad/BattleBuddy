@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, Button, ScrollView } from 'react-native'
+import { View, Text, Modal, Button, ScrollView } from 'react-native'
 import { shared } from '../../styles'
 const LocationModel = require('../../models/location-model')
 
@@ -7,6 +7,7 @@ export default class PreviousLocations extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      active: false,
       locations: [],
     }
   }
@@ -28,10 +29,24 @@ export default class PreviousLocations extends Component {
 
   render() {
     return (
-      <View style={shared.form}>
-        <ScrollView>
-          { this.locations() } 
-        </ScrollView>
+      <View>
+        <Button
+          title='Pick From Saved'
+          onPress={() => this.setState({active:true})}
+        />
+
+        <Modal
+          visible={this.state.active}
+          animationType='slide'
+          presentationType='fullScreen'
+          onRequestClose={() => this.setState({active:false})}
+        >
+          <View style={shared.form}>
+            <ScrollView>
+              { this.locations() } 
+            </ScrollView>
+          </View>
+        </Modal>
       </View>
     )
   }

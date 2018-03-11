@@ -132,7 +132,7 @@ const locationStyles = StyleSheet.create({
   },
 
   mapView: {
-    height: '100%',
+    height: 1000,
   },
 
   outerTextInput: {
@@ -153,7 +153,6 @@ const locationStyles = StyleSheet.create({
   },
 
   locationInput: {
-    backgroundColor: 'blue',
     height: '100%',
     margin: '2%',
   }

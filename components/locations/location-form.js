@@ -11,23 +11,32 @@ export default class LocationForm extends Component {
     super(props)
     this.state = {
       prev: this.props.prev || false,      
-      pickingPrevious: false,
-      pickedPrevious: false,
+      pickedPrevious: this.props.pickedPrevious || false,
       search: '',
       id: this.props.id || null,
       name: this.props.name || '',
-      longitude: this.props.longitude || 0.0,
-      latitude: this.props.latitude || 0.0,
+      region: {},
+      map: null,
     }
   }
 
   componentDidMount() {
     this.initializeLocation()
-      .then(loc => {
-        this.setState({
-          longitude: this.state.longitude || loc.coords.longitude,
-          latitude: this.state.latitude || loc.coords.latitude,
-        })
+      .then(region => this.setState({ 
+        region: {
+          latitude: this.props.latitude || region.coords.latitude,
+          longitude: this.props.longitude || region.coords.longitude,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+        }
+      }))
+      .then(complete => {
+        let map = <MapView
+            style={locationStyles.locationInput}
+            region={this.state.region}
+            onRegionChange={this.changeRegion}
+          />
+        this.setState({ map })
       })
   }
 
@@ -35,6 +44,8 @@ export default class LocationForm extends Component {
     let granted = await verifyLocation()
     if (granted) {
       return await getLocation() 
+    } else {
+      //stuff
     }
   }
 
@@ -46,23 +57,9 @@ export default class LocationForm extends Component {
   prev() {
     if (this.state.prev) {
       return (
-        <View>
-          <Button
-            title='Pick From Saved'
-            onPress={() => this.setState({pickingPrevious:true})}
-          />
-
-          <Modal
-            visible={this.state.pickingPrevious}
-            animationType='slide'
-            presentationType='fullScreen'
-            onRequestClose={() => this.setState({pickingPrevious:false})}
-          >
-            <PreviousLocations 
-              onPress={this.props.onSubmit}
-            />
-          </Modal>
-        </View>
+        <PreviousLocations 
+          onPress={this.props.onSubmit}
+        />
       )
     }
   }
@@ -79,7 +76,7 @@ export default class LocationForm extends Component {
 
   mapView() {
     return (
-      <ScrollView>
+      <View style={locationStyles.mapView}>
         <View style={locationStyles.outerTextInput}>
           <TextInput
             style={locationStyles.textInput}
@@ -90,18 +87,8 @@ export default class LocationForm extends Component {
           />
         </View>
 
-        <View style={locationStyles.locationInput}>
-          <MapView
-            provider='google'
-            region={{
-              latitude: this.state.latitude,
-              longitude: this.state.longitude,
-              latitudeDelta: 0.0922,
-              longitudeDelta: 0.0922,
-            }}
-          />
-        </View>
-      </ScrollView>
+        { this.state.map }
+      </View>
     )
   }
 
@@ -114,9 +101,7 @@ export default class LocationForm extends Component {
           title='Submit Location'
           onPress={this.submitNew}
         />
-        <View style={locationStyles.mapView}>
-          { this.mapView() }
-        </View>
+        { this.mapView() }
       </View>
     )
   }

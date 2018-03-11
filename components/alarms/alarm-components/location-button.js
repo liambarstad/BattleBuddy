@@ -45,6 +45,7 @@ export default class LocationButton extends Component {
         onRequestClose={() => this.setState({editing:false})}
       >
         <LocationForm 
+          prev='true'
           onSubmit={(locationId) => this.setLocation(locationId)} 
         />
       </Modal>
