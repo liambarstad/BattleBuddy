@@ -11,13 +11,50 @@ export default class LocationForm extends Component {
     super(props)
     this.state = {
       prev: this.props.prev || false,      
-      pickedPrevious: this.props.pickedPrevious || false,
       search: '',
       id: this.props.id || null,
       name: this.props.name || '',
       region: {},
       map: null,
+      markers: [],
     }
+  }
+
+  previousLocationsModal() {
+    if (this.state.prev) {
+      return (
+        <PreviousLocations 
+          onPress={this.props.onSubmit}
+        />
+      )
+    }
+  }
+
+  search() {
+    searchMaps(this.state.search, this.state.region.latitude, this.state.region.longitude, this.markerPress)
+      .then(makrers => this.setState({ markers }))
+  }
+
+  markerPress(name, latitude, longitude) {
+    this.setState({
+      name,
+      search: name,
+      markers: <MapView.Marker
+          coordinates={{ latitude, longitude }}
+          title={name} 
+          image={require('../../assets/main/location-button-inactive.png')}
+        />
+    })
+  }
+
+  submit() {
+    let data = {
+      id: this.state.id,
+      name: this.state.name,
+      latitude: this.state.region.latitude,
+      longitude: this.state.region.longitude,
+    }
+    this.props.onSubmit(data)
   }
 
   componentDidMount() {
@@ -31,12 +68,8 @@ export default class LocationForm extends Component {
         }
       }))
       .then(complete => {
-        let map = <MapView
-            style={locationStyles.locationInput}
-            region={this.state.region}
-            onRegionChange={this.changeRegion}
-          />
-        this.setState({ map })
+        this.initializeMarker()
+        this.setMap()
       })
   }
 
@@ -49,29 +82,28 @@ export default class LocationForm extends Component {
     }
   }
 
-  submitNew() {
-    //for new entry
-    //end with this.props.onSubmit()
-  }
-
-  prev() {
-    if (this.state.prev) {
-      return (
-        <PreviousLocations 
-          onPress={this.props.onSubmit}
+  initializeMarker() {
+    this.setState({
+      markers: <MapView.Marker
+          coordinate={{
+            latitude: this.state.region.latitude,
+            longitude: this.state.region.longitude,
+          }}
+          title={this.props.name}
         />
-      )
-    }
+    })
   }
 
-  search() {
-    searchMaps(this.state.search)  
-      .then(results => {
-        this.setState({
-          longitude: results.longitude,
-          latitude: results.latitude,
-        })
-      })
+  setMap() {
+    let map = (
+      <MapView
+        style={locationStyles.locationInput}
+        initialRegion={this.state.region}
+      >
+        { this.state.markers }
+      </MapView>
+    )
+    this.setState({ map })
   }
 
   mapView() {
@@ -82,12 +114,14 @@ export default class LocationForm extends Component {
             style={locationStyles.textInput}
             placeholder={this.state.name || 'Search Location'}
             onChangeText={(search) => this.setState({ search })}
-            onSubmitEditing={this.search}
+            onSubmitEditing={() => this.search()}
             defaultValue={this.props.name}
           />
         </View>
 
-        { this.state.map }
+        <View>
+          { this.state.map }
+        </View>
       </View>
     )
   }
@@ -95,11 +129,11 @@ export default class LocationForm extends Component {
   render() {
     return (
       <View style={shared.form}>
-        { this.prev() }
+        { this.previousLocationsModal() }
         <Button
           style={shared.createButton}
           title='Submit Location'
-          onPress={this.submitNew}
+          onPress={() => this.submit()}
         />
         { this.mapView() }
       </View>

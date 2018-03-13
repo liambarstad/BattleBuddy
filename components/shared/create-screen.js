@@ -10,8 +10,9 @@ export default CreateScreen = (props) => {
       <Modal
         visible={intToBool(props.active)}
         animationType={'slide'}
+        style={{height: '100%'}}
         onRequestClose={props.onClose}
-        presentationStyle={'fullScreen'}
+        presentationStyle='fullScreen'
         onDismiss={props.onClose}
       >
       { renderForm(props.resource, props.onSubmit) }

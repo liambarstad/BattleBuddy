@@ -46,16 +46,15 @@ export default class LocationButton extends Component {
       >
         <LocationForm 
           prev='true'
-          onSubmit={(locationId) => this.setLocation(locationId)} 
+          onSubmit={(locationData) => this.setLocation(locationData)} 
         />
       </Modal>
     )
   }
 
-  setLocation = async (locationId) => {
-    //some bullshit
+  setLocation = async (locationData) => {
     this.setState({ active: true, editing: false })
-    let result = await AlarmModel.localize(this.props.id, locationId) 
+    let result = await AlarmModel.localize(this.props.id, locationData) 
     !result ?
       this.setState({ active: false }) :
       null

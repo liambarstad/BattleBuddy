@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, Button } from 'react-native'
-import { SQLite } from 'expo'
+import { Text, View, Image } from 'react-native'
 import MainTabs from './components/main-page/main-tabs'
 import MainContent from './components/main-page/main-content'
 import { appStyles, shared } from './styles'

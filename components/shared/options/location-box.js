@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Modal, Text, View, TouchableHighlight } from 'react-native'
+import { shared } from '../../../styles'
 import LocationForm from '../../locations/location-form'
 
 export default class LocationBox extends Component {
@@ -45,7 +46,7 @@ export default class LocationBox extends Component {
         <TouchableHighlight
           onPress={() => this.setState({editing:true})}
         >
-          <Text>{this.state.name}</Text>
+          <Text style={shared.optionText}>{this.state.name}</Text>
         </TouchableHighlight>
       </View>
     )

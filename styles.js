@@ -63,9 +63,6 @@ const mainListing = StyleSheet.create({
 })
 
 const alarmStyles = StyleSheet.create({
-  mainCard: {
-    margin: '2%',
-  },
 
   icon: {
     width: 40,
@@ -84,10 +81,19 @@ const alarmStyles = StyleSheet.create({
 })          
 
 const shared = StyleSheet.create({
+
+  mainCard: {
+    padding: '2%',
+    height: '100%',
+  },
+
   form: {
-    marginTop: '10%',
-    marginRight: '2%',
-    marginLeft: '2%',
+    paddingVertical: '20%',
+    paddingRight: '2%',
+    paddingLeft: '2%',
+    height: '100%',
+    justifyContent: 'center',
+    backgroundColor: appBlack,
   },
 
   option: {
@@ -105,6 +111,11 @@ const shared = StyleSheet.create({
     height: 60,
   },
 
+  optionText: {
+    fontSize: 20,
+    color: appOrange,
+  },
+
   pickers: {
     flex: 1,
     flexDirection: 'row',
@@ -112,15 +123,24 @@ const shared = StyleSheet.create({
 
   createButton: {
     backgroundColor: 'blue',
+    alignSelf: 'flex-end',
   },
 
   flex1: {
     flex: 1,
   },
 
+  backgroundImage1: {
+    opacity: 0.2,
+    position: 'absolute',
+    height: '100%',
+    width: '100%',
+  },
+
 })
 
 const locationStyles = StyleSheet.create({
+
   title: {
     color: appOrange,
     fontSize: 25,
@@ -132,24 +152,26 @@ const locationStyles = StyleSheet.create({
   },
 
   mapView: {
-    height: 1000,
+    height: '100%',
+    flexDirection: 'column',
   },
 
   outerTextInput: {
     width: '100%',
-    height: 60,
-    marginRight: '5%',
-    marginLeft: '5%',
-    backgroundColor: 'blue',
+    height: '5%',
+    marginHorizontal: '5%',
+    alignItems: 'center',
     justifyContent: 'center',
+    alignSelf: 'center',
+    backgroundColor: appOrange,
   },
 
   textInput: {
-    width: '100%',
+    width: '96%',
     paddingRight: '5%',
     paddingLeft: '5%',
     backgroundColor: 'lightblue',
-    fontSize: 30,
+    fontSize: 25,
   },
 
   locationInput: {

@@ -59,7 +59,7 @@ export default class TimeBox extends Component {
         <TouchableHighlight
           onPress={() => this.setState({editing:true})}
         >
-          <Text>{this.state.value}</Text>
+          <Text style={shared.optionText}>{this.state.value}</Text>
         </TouchableHighlight>
       </View>
     )

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, Button, ScrollView } from 'react-native'
+import { Text, View, Button, ScrollView, Image } from 'react-native'
 import { boolToInt } from '../../helpers/gen-helper' 
 import { locationStyles, shared } from '../../styles'
 import { validateNew } from '../../helpers/location-helper'
@@ -21,8 +21,8 @@ export default class Locations extends Component {
       .then(locations => this.setState({ locations }))
   }
 
-  create(info) {
-    let validated = validateNew(info)
+  create(data) {
+    let validated = validateNew(data)
     LocationModel.create(validated)
       .then(newLocation => {
         this.setState({locations: [newLocation, ...this.state.locations], createScreen: false})
@@ -37,13 +37,17 @@ export default class Locations extends Component {
   render() {
     return (
       <View>
+        <Image
+          source={require('../../assets/main/background1.png')}
+          style={shared.backgroundImage1}
+        />
         <CreateScreen
           active={boolToInt(this.state.createScreen)}
           resource='locations'
           onSubmit={(info) => this.create(info)}
         />
 
-        <ScrollView>
+        <ScrollView style={shared.mainCard}>
           { this.state.locations }
         </ScrollView>
 

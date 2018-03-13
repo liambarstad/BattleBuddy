@@ -59,7 +59,7 @@ export default class OptionBox extends Component {
       return (
         <View style={shared.option}>
           <View style={shared.optionLeft}>
-            <Text>{ this.props.name }</Text>
+            <Text style={shared.optionText}>{ this.props.name }</Text>
           </View>
 
           <View style={shared.optionRight}>

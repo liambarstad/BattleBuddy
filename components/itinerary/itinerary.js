@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
-import { Text, ScrollView } from 'react-native'
+import { View, Text, Button, ScrollView, Image } from 'react-native'
+import { shared } from '../../styles'
+import { boolToInt } from '../../helpers/gen-helper'
+import CreateScreen from '../shared/create-screen'
 const ItineraryModel = require('../../models/itinerary-item-model')
 
 export default class Itinerary extends Component {
@@ -19,9 +22,27 @@ export default class Itinerary extends Component {
 
   render() {
     return (
-      <ScrollView>
-        { this.state.itinerary }
-      </ScrollView>
+      <View>
+        <Image
+          source={require('../../assets/main/background1.png')}
+          style={shared.backgroundImage1}
+        />
+        <CreateScreen
+          active={boolToInt(this.state.createScreen)}
+          resource='itinerary'
+          onSubmit={(info) => this.create(info)}
+        />
+
+        <ScrollView style={shared.mainCard}>
+          { this.state.itinerary }
+        </ScrollView>
+        
+        <Button
+          style={shared.createButton}
+          onPress={this.toggleCreateScreen}
+          title='+ Itinerary Item'
+        />
+      </View>
         )
   }
 

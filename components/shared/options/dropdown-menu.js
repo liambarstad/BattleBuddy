@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Text, TouchableHighlight } from 'react-native'
+import { shared } from '../../../styles'
 
 export default class DropdownMenu extends Component {
   constructor(props) {
@@ -15,7 +16,7 @@ export default class DropdownMenu extends Component {
       <TouchableHighlight
         onPress={this.submit}
       >
-        <Text>{this.state.value}</Text>
+        <Text style={shared.optionText}>{this.state.value}</Text>
       </TouchableHighlight>
     )
   }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, Button, ScrollView } from 'react-native'
+import { Text, View, Button, ScrollView, Image } from 'react-native'
 import Alarm from './alarm'
 import CreateScreen from '../shared/create-screen'
 import { validateNew } from '../../helpers/alarm-helper'
@@ -37,13 +37,17 @@ export default class Alarms extends Component {
   render() {
     return (
       <View>
+        <Image
+          source={require('../../assets/main/background1.png')}
+          style={shared.backgroundImage1}
+        />
         <CreateScreen 
           active={boolToInt(this.state.createScreen)} 
           resource='alarms'
           onSubmit={(info) => this.create(info)}
         />
       
-        <ScrollView style={alarmStyles.mainCard}>
+        <ScrollView style={shared.mainCard}>
           { this.state.alarms }
         </ScrollView>
       
